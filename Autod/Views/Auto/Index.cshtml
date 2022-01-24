@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Autod.Models.Auto.AutoListViewModel>
+
+@{ 
+    int queueNumber = 0;
+}
+
+<div>
+    <a asp-action="add" asp-controller="auto" type="submit" class="btn btn-danger">Add</a>
+</div>
+<form method="post">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Mark</th>
+                <th scope="col">Model</th>
+                <th scope="col">Price</th>
+                <th scope="col">Ammount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var auto in Model)
+            {
+                queueNumber++;
+
+                <tr>
+                    <td class="">@queueNumber</td>
+                    <td class="">@auto.Mark</td>
+                    <td class="">@auto.Modell</td>
+                    <td class="">@auto.Price</td>
+                    <td class="">@auto.Ammount</td>
+                    <td>
+                        <a asp-action="edit" asp-controller="auto" asp-route-id="@auto.Id" class="btn btn-primary">Edit</a>
+                        <input asp-action="delete" asp-controller="auto" asp-route-id="@auto.Id" type="submit" class="btn btn-danger" value="Delete">
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
